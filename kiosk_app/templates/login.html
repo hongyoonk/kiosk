@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+    <h1>로그인</h1>
+    <div id="camera"></div>
+    <div id="notification"></div>
+    <div id="buttons"></div>
+
+    <script>
+        const video = document.createElement('video');
+        const camera = document.getElementById('camera');
+        const notification = document.getElementById('notification');
+        const buttons = document.getElementById('buttons');
+        
+        // Start the camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                video.play();
+                camera.appendChild(video);
+            });
+
+        // Check for face recognition
+        const checkFaceRecognition = async () => {
+            const formData = new FormData();
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(blob => formData.append('video', blob), 'video/webm');
+    
+            // Implement your server communication logic here
+            // Send the video stream to the server for face recognition
+    
+            // Placeholder for demonstration purposes
+            const recognitionResult = await recognizeFaceOnServer(formData);
+    
+            if (recognitionResult.isRecognized) {
+                showConfirmationPopup(recognitionResult.name, recognitionResult.age);
+            } else {
+                showRecognitionFailurePopup();
+            }
+        };
+
+        const recognizeFaceOnServer = async (formData) => {
+            try {
+                const serverResponse = await fetch('/login', {
+                    method: 'POST',
+                    body: formData,
+                });
+    
+                const recognitionResult = await serverResponse.json();
+    
+                return recognitionResult;
+            } catch (error) {
+                console.error('Error during face recognition:', error);
+                return { isRecognized: false };
+            }
+        };
+
+        const showConfirmationPopup = (name, age) => {
+            notification.innerHTML = `
+                <p>${name}(${age})님 맞으십니까?</p>
+                <button onclick="confirmLogin()">예</button>
+                <button onclick="retryRecognition()">아니오</button>
+            `;
+        };
+
+        const confirmLogin = () => {
+            // Redirect to /member
+            window.location.href = '/memberorder';
+        };
+
+        const retryRecognition = () => {
+            notification.innerHTML = '';
+            // Retry face recognition
+            checkFaceRecognition();
+        };
+
+        const goBack = () => {
+            // Go back to the main page
+            window.history.back();
+        };
+
+        // Add a back button to go to the main page
+        buttons.innerHTML = '<button onclick="goBack()">뒤로가기</button>';
+        
+        // Initial check for face recognition (you may need to call this function at intervals)
+        checkFaceRecognition();
+    </script>
+</body>
+</html>

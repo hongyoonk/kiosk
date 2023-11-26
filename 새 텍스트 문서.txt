@@ -1,0 +1,3 @@
+ares-package kiosk_app
+ares-install --device emulator kiosk.app_1.0.0_all.ipk
+ares-launch emulator kiosk_app

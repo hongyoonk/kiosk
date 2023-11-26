@@ -1,0 +1,3 @@
+Total Price,Packaging Preference,Order Details
+5000,FALSE,"[{'menuName': '콜드 브루', 'count': 1}]"
+5000,True,"[{'menuName': '시원한 라떼', 'count': 1}]"

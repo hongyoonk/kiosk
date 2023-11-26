@@ -1,0 +1,36 @@
+:root{
+    /*font style*/
+    --font-square: 'NanumSquare', san-serif;
+    --font-large: 32px;
+    /* color */
+    --red: #FF6347;
+    --grey: #EEEEEE;
+    --white : #FFFFFF;
+    --grey-dark : #808080;
+}
+
+#click_btn{
+    position: absolute;
+    left : 50%;
+    top : 50%;
+    transform: translate(-50%, -50%);
+
+    width:30vw;
+    background-color: #FF6347;
+    border:none;
+   
+    color:#fff;
+    padding: 5vw 0;
+    border-radius: 4vw;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /* font-family: 'Recipekorea'; */
+   
+    outline : 0 ;
+    font-family: var(--font-square);
+    font-size: 3vw;
+    font-weight: bold;
+/*     margin: 25vh 35vw; */
+   cursor: pointer;
+}

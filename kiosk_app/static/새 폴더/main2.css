@@ -1,0 +1,72 @@
+:root {
+    /* Font style */
+    --font-square: 'NanumSquare', sans-serif;
+    --font-large: 32px;
+    /* Colors */
+    --red:  #fdd100;
+    --grey: #EEEEEE;
+    --white: #FFFFFF;
+    --grey-dark: rgb(31, 31, 31);
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row; /* 버튼을 가로로 배치합니다. */
+    justify-content: center; /* 가로로 중앙 정렬합니다. */
+    align-items: center; /* 세로로 중앙에 정렬합니다. */
+    height: 80vh;
+}
+
+.button-container2 {
+    display: flex;
+    justify-content: center; /* 가로로 중앙 정렬합니다. */
+    align-items: bottom; /* 세로로 중앙에 정렬합니다. */
+}
+
+#speed, #normal {
+    color: rgb(31, 31, 31);
+    background-color:#fdd100;
+    border: none;
+    width: 150vw;
+    height: 54vh;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    outline: 0;
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 50px; /* 버튼 사이의 간격 설정 */
+}
+
+#speed, #normal:hover {
+    background-color:  var(--black); /* Change color on hover */
+    color: #fefefe;
+}
+ 
+
+/* 모바일버전
+-----------------------------------------------------------------------*/
+/* Mobile version */
+@media (max-width: 800px) {
+    #speed, #normal {
+        color: rgb(31, 31, 31);
+        background-color:#fdd100;
+        border: none;
+        width: 150vw;
+        height: 30vh;
+        border-radius: 4px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        outline: 0;
+        font-family: 'NanumSquare', sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 20px; /* 버튼 사이의 간격 설정 */
+    }
+
+}
